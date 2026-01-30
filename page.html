@@ -1,62 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Posts and Comments</title>
-    <script defer src="main.js"></script>
+  <meta charset="UTF-8" />
+  <title>Product Management</title>
+  <script src="main.js" defer></script>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    thead {
+      background: #333;
+      color: white;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+
+    tbody tr:nth-child(odd) {
+      background: #ffffff;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    .controls {
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin-right: 5px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Manage Posts</h1>
-    <div>
-        <table id="post-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Views</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="post-body">
-                <!-- Nội dung danh sách Posts -->
-            </tbody>
-        </table>
-    </div>
-    <div style="margin-top: 20px;">
-        <h3>Add/Edit Post</h3>
-        <form id="post-form">
-            <input type="text" id="title_txt" placeholder="Enter Title">
-            <input type="number" id="views_txt" placeholder="Enter Views">
-            <input type="submit" value="Save">
-        </form>
-    </div>
 
-    <hr>
+<h1>Product Management</h1>
 
-    <h1>Manage Comments</h1>
-    <div>
-        <table id="comment-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Text</th>
-                    <th>Post ID</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="comment-body">
-                <!-- Nội dung danh sách Comments -->
-            </tbody>
-        </table>
-    </div>
-    <div style="margin-top: 20px;">
-        <h3>Add Comment</h3>
-        <form id="comment-form">
-            <input type="text" id="comment_text" placeholder="Enter Comment">
-            <input type="text" id="comment_postId" placeholder="Enter Post ID">
-            <input type="submit" value="Add Comment">
-        </form>
-    </div>
+<div class="controls">
+  <input type="text" id="searchTxt" placeholder="Search by title..." />
+
+  <select id="pageSize">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="20">20</option>
+  </select>
+
+  <button onclick="sortByPrice()">Sort Price</button>
+  <button onclick="sortByTitle()">Sort Title</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody id="table-body"></tbody>
+</table>
+
+<div style="margin-top:10px;">
+  <button onclick="prevPage()">Prev</button>
+  <span id="pageInfo"></span>
+  <button onclick="nextPage()">Next</button>
+</div>
+
 </body>
 </html>
